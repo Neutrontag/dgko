@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>İyi ki Doğdun, Aşkım</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= PAGE LOAD OVERLAY ================= -->
+<div id="loader">
+  <div class="loader-heart">❤</div>
+  <p class="loader-text">güzel bir şey hazırlanıyor&hellip;</p>
+</div>
+
+<!-- ================= CURSOR GLOW ================= -->
+<div id="cursor-glow"></div>
+
+<!-- ================= AMBIENT BACKGROUND (persists across whole page) ================= -->
+<div id="ambient-bg" aria-hidden="true">
+  <div class="glow-orb orb-a"></div>
+  <div class="glow-orb orb-b"></div>
+  <div class="glow-orb orb-c"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div id="petal-field"></div>
+</div>
+
+<!-- ================= SCROLL PROGRESS INDICATOR ================= -->
+<div id="scroll-indicator"><div id="scroll-indicator-fill"></div></div>
+
+<!-- ================= MUSIC PLAYER ================= -->
+<div id="music-player">
+  <!-- Replace music/song.mp3 with your own song -->
+  <audio id="bg-audio" loop preload="none">
+    <source src="music/song.mp3" type="audio/mpeg">
+  </audio>
+  <button id="music-toggle" aria-label="Arka plan müziğini çal">
+    <svg id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    <span class="music-ring"></span>
+  </button>
+</div>
+
+<!-- ======================================================= -->
+<!-- SECTION 1 — LANDING                                      -->
+<!-- ======================================================= -->
+<section id="landing" class="screen">
+  <div class="landing-inner">
+    <p class="eyebrow">kalbimin sahibine</p>
+    <h1 class="landing-title">İyi ki Doğdun,<br><span class="script">Aşkım</span> <span class="beat-heart">❤️</span></h1>
+    <p class="landing-sub">Tüm kalbimle hazırladığım küçük bir sürpriz.</p>
+    <button id="open-gift-btn" class="glow-btn">
+      <span>Hediyeni Aç</span>
+    </button>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <span></span>
+    <p>kaydır</p>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- MAIN EXPERIENCE (hidden until gift opened)               -->
+<!-- ======================================================= -->
+<main id="experience">
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" class="section">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">çerçevelenmiş anılar</p>
+      <h2 class="section-title">Küçük Galerimiz</h2>
+    </div>
+
+    <div class="polaroid-grid">
+      <!-- Replace each src below with your own photo (images/photo1.jpg ... photo12.jpg) -->
+      <figure class="polaroid" data-reveal data-rot="-6"><img src="images/photo1.jpg" alt="Anımız 1" loading="lazy"><figcaption>başlangıç</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="4"><img src="images/photo2.jpg" alt="Anımız 2" loading="lazy"><figcaption>o gülüş</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="-3"><img src="images/photo3.jpg" alt="Anımız 3" loading="lazy"><figcaption>altın saat</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="7"><img src="images/photo4.jpg" alt="Anımız 4" loading="lazy"><figcaption>biz, hep</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="-8"><img src="images/photo5.jpg" alt="Anımız 5" loading="lazy"><figcaption>sessiz an</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="2"><img src="images/photo6.jpg" alt="Anımız 6" loading="lazy"><figcaption>yeni bir yer</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="-5"><img src="images/photo7.jpg" alt="Anımız 7" loading="lazy"><figcaption>saçma yüzler</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="6"><img src="images/photo8.jpg" alt="Anımız 8" loading="lazy"><figcaption>neredeysen ev orası</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="-4"><img src="images/photo9.jpg" alt="Anımız 9" loading="lazy"><figcaption>o yolculuk</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="5"><img src="images/photo10.jpg" alt="Anımız 10" loading="lazy"><figcaption>sebepsiz yere</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="-7"><img src="images/photo11.jpg" alt="Anımız 11" loading="lazy"><figcaption>en sevdiğim manzara</figcaption></figure>
+      <figure class="polaroid" data-reveal data-rot="3"><img src="images/photo12.jpg" alt="Anımız 12" loading="lazy"><figcaption>sonsuza dek, yakında</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ============ LOVE LETTER ============ -->
+  <section id="letter-section" class="section">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">hazır olduğunda aç</p>
+      <h2 class="section-title">Sadece Sana Bir Mektup ❤️</h2>
+    </div>
+
+    <div class="letter-stage" data-reveal>
+      <!-- Envelope -->
+      <div id="envelope" class="envelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-paper"></div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-seal">❤</div>
+        <p class="envelope-hint">açmak için dokun</p>
+      </div>
+
+      <!-- Letter (revealed) -->
+      <div id="letter-paper" class="letter-paper">
+        <div class="letter-sparkles"></div>
+        <div class="letter-content">
+          <!-- Replace this placeholder text with your own birthday letter -->
+          <p class="letter-line">Canım aşkım,</p>
+          <p class="letter-line">Senin bu özel gününde, her şeyi bir kenara bırakıp sana ne kadar değerli olduğunu söylemek istedim. Sen varken en sıradan an bile eşsizleşiyor.</p>
+          <p class="letter-line">Gülüşün, sabrın, yumuşaklığın ve beni sessizce, istikrarla sevme biçimin için teşekkür ederim. Bu yılın, kalbinin fısıldadığı her şeyi sana getirmesini diliyorum.</p>
+          <p class="letter-line">İyi ki doğdun aşkım. Birlikte yaşayacağımız nice zamanlara.</p>
+          <p class="letter-signature">— Sonsuza dek senin</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MEMORY TIMELINE ============ -->
+  <section id="timeline-section" class="section">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">şimdiye kadarki hikayemiz</p>
+      <h2 class="section-title">Anı Zaman Çizelgesi</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+
+      <!-- Replace each date/title/description with your real memories -->
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">❤️</div>
+        <div class="timeline-card">
+          <span class="timeline-date">İlk Gün</span>
+          <h3>Tanıştığımız Gün</h3>
+          <p>Yer tutucu — yollarınızın ilk kesiştiği anı buraya yazın.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">❤️</div>
+        <div class="timeline-card">
+          <span class="timeline-date">Kısa Süre Sonra</span>
+          <h3>İlk Fotoğrafımız</h3>
+          <p>Yer tutucu — ilk fotoğrafımızın hikayesini buraya yazın.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">❤️</div>
+        <div class="timeline-card">
+          <span class="timeline-date">O Yaz</span>
+          <h3>İlk Seyahatimiz</h3>
+          <p>Yer tutucu — nereye gittiğinizi ve neden özel olduğunu yazın.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">❤️</div>
+        <div class="timeline-card">
+          <span class="timeline-date">Arada Bir Yerde</span>
+          <h3>En Komik Anımız</h3>
+          <p>Yer tutucu — ikinizi hâlâ güldüren anıyı buraya yazın.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">❤️</div>
+        <div class="timeline-card">
+          <span class="timeline-date">Sessiz Bir Akşam</span>
+          <h3>İlk "Seni Seviyorum"</h3>
+          <p>Yer tutucu — bu sözlerin nasıl ve ne zaman söylendiğini yazın.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-reveal>
+        <div class="timeline-dot">❤️</div>
+        <div class="timeline-card">
+          <span class="timeline-date">Hep İleride</span>
+          <h3>Birlikte Gelecek Maceralar</h3>
+          <p>Yer tutucu — ikiniz için küçük bir söz veya hayal yazın.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BIRTHDAY WISH CARD ============ -->
+  <section id="wish-section" class="section">
+    <div class="wish-card" data-reveal>
+      <div class="wish-border"></div>
+      <div class="wish-content">
+        <p class="eyebrow">tüm kalbimle</p>
+        <h2 class="wish-title">İyi ki Doğdun ❤️</h2>
+        <!-- Replace with your own birthday wishes -->
+        <p class="wish-text">Bu yıl sana huzurlu sabahlar, kolay gülüşler ve hak ettiğin her küçük mutluluğu getirsin. Bugün ve her zaman, ne kadar sevildiğini hissetmeni diliyorum.</p>
+        <p class="wish-text small">Seni sevmek ve senin tarafından sevilmek için sonsuz minnettarım.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTERACTIVE HEART ============ -->
+  <section id="heart-section" class="section">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">bir şey daha</p>
+      <h2 class="section-title">Kalbime Dokun</h2>
+    </div>
+
+    <div class="heart-stage" data-reveal>
+      <button id="crystal-heart" aria-label="Kalbe dokun">
+        <svg viewBox="0 0 100 90" class="heart-svg">
+          <defs>
+            <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffd9e8"/>
+              <stop offset="45%" stop-color="#ffb6c9"/>
+              <stop offset="100%" stop-color="#e88fa8"/>
+            </linearGradient>
+          </defs>
+          <path d="M50 85 C15 60 2 38 2 22 C2 6 16 -2 30 4 C40 8 47 18 50 24 C53 18 60 8 70 4 C84 -2 98 6 98 22 C98 38 85 60 50 85Z" fill="url(#heartGrad)"/>
+        </svg>
+      </button>
+      <div id="heart-burst-container" aria-hidden="true"></div>
+      <p id="secret-message" class="secret-message">
+        <!-- Replace with your own secret message -->
+        Sen, sevmekten en çok keyif aldığım insansın — hep de öyle kalacaksın. 💌
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FINAL SURPRISE ============ -->
+  <section id="final-section" class="section">
+    <div class="final-inner" data-reveal>
+      <h2 class="section-title">Bir tane daha ister misin?</h2>
+      <button id="final-btn" class="glow-btn large">
+        <span>Son Bir Sürpriz ❤️</span>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FINAL OVERLAY ================= -->
+<div id="final-overlay">
+  <div id="final-stars"></div>
+  <div id="final-hearts"></div>
+  <div id="fireworks-hearts"></div>
+  <div class="final-message-wrap">
+    <!-- Replace with your own final personalized message -->
+    <p class="final-line" data-line="1">Her zaman seni seçeceğim.</p>
+    <p class="final-line" data-line="2">İyi ki doğdun, aşkım.</p>
+    <p class="final-line" data-line="3">Seni kelimelerin anlatabileceğinden çok daha fazla seviyorum. ❤️</p>
+  </div>
+  <button id="close-final" aria-label="Kapat">✕</button>
+</div>
+
+<!-- ================= LIGHTBOX ================= -->
+<div id="lightbox">
+  <div id="lightbox-backdrop"></div>
+  <button id="lightbox-close" aria-label="Fotoğrafı kapat">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
